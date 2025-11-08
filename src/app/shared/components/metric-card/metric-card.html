@@ -1,0 +1,11 @@
+<article class="metric" [class.metric--up]="trend === 'up'" [class.metric--down]="trend === 'down'">
+  <div class="metric__value">{{ value }}</div>
+  <p class="metric__label">{{ label }}</p>
+  <p *ngIf="helper" class="metric__helper">{{ helper }}</p>
+  <div *ngIf="trend" class="metric__trend" [attr.aria-label]="trendLabel">
+    <span class="metric__trend-icon">
+      {{ trend === 'up' ? '▲' : trend === 'down' ? '▼' : '•' }}
+    </span>
+    <span>{{ trendLabel }}</span>
+  </div>
+</article>

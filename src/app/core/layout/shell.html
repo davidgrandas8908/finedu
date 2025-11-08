@@ -1,0 +1,36 @@
+<div class="layout">
+  <header class="topbar">
+    <a routerLink="/" class="brand" aria-label="Inicio">
+      <span class="brand__logo">FinEdu</span>
+      <span class="brand__tagline">Educación financiera activa</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Secciones principales">
+      <a
+        *ngFor="let item of navigation"
+        [routerLink]="item.path"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: item.exact }"
+        class="main-nav__link"
+      >
+        {{ item.label }}
+      </a>
+    </nav>
+
+    <a routerLink="/progreso" class="cta-button">
+      Mi progreso
+    </a>
+  </header>
+
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <p class="footer__brand">FinEdu</p>
+      <p class="footer__message">Aprende, juega y transforma tus decisiones financieras.</p>
+    </div>
+    <p class="footer__credits">© {{ currentYear }} FinEdu · Construido con Angular.</p>
+  </footer>
+</div>

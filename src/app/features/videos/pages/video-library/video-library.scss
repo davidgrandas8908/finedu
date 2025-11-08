@@ -1,0 +1,128 @@
+:host {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.intro {
+  display: grid;
+  gap: 1rem;
+}
+
+.intro__helper {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.68);
+  max-width: 68ch;
+  line-height: 1.65;
+}
+
+.filters {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.chip {
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+}
+
+.chip--active {
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 12px 28px rgba(79, 70, 229, 0.32);
+}
+
+.videos__grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.videos__mark {
+  border: none;
+  background: rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.videos__mark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+}
+
+.empty {
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 1.5rem;
+  border: 1px dashed rgba(15, 23, 42, 0.2);
+  color: rgba(15, 23, 42, 0.64);
+  background: rgba(15, 23, 42, 0.02);
+}
+
+.playbook {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.playbook__card {
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+}
+
+.playbook__card h4 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.playbook__card ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  line-height: 1.6;
+  color: rgba(15, 23, 42, 0.7);
+}
+
+.playbook__card--contrast {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(15, 23, 42, 0.92));
+  color: rgba(226, 232, 240, 0.92);
+}
+
+.playbook__card--contrast p {
+  margin: 0;
+  line-height: 1.65;
+}
+
+@media (max-width: 720px) {
+  .filters {
+    justify-content: center;
+  }
+
+  .chip-group {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,41 @@
+<article class="card" [ngClass]="'card--' + variant">
+  <header class="card__header">
+    <span class="card__icon">{{ variantIcon[variant] }}</span>
+    <div>
+      <h3 class="card__title">{{ title }}</h3>
+      <p *ngIf="meta" class="card__meta">{{ meta }}</p>
+    </div>
+  </header>
+
+  <p *ngIf="description" class="card__description">{{ description }}</p>
+  <p *ngIf="objective" class="card__objective">
+    <strong>Objetivo:</strong>
+    <span>{{ objective }}</span>
+  </p>
+
+  <ul *ngIf="displayedTags.length" class="card__tags">
+    <li *ngFor="let tag of displayedTags">{{ tag }}</li>
+  </ul>
+
+  <div class="card__actions">
+    <a
+      *ngIf="actionLink"
+      [href]="actionLink"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="card__link"
+    >
+      {{ actionLabel }}
+    </a>
+    <button
+      *ngIf="!actionLink"
+      type="button"
+      class="card__button"
+      (click)="onPrimaryAction()"
+      [disabled]="disabled"
+    >
+      {{ actionLabel }}
+    </button>
+    <ng-content select="[actions]"></ng-content>
+  </div>
+</article>

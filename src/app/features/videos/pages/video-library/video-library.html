@@ -1,0 +1,74 @@
+<section class="intro">
+  <app-section-heading
+    eyebrow="Aprendizaje visual"
+    title="Videoteca interactiva"
+    description="Selecciona según tu foco de estudio y suma reproducciones verificadas. Te recomendamos complementar cada video con una actividad práctica."
+  ></app-section-heading>
+  <p class="intro__helper">
+    Filtra por tema principal y guarda notas mientras ves cada cápsula. Marca los videos como vistos para alimentar tu progreso semanal.
+  </p>
+</section>
+
+<section class="filters">
+  <div class="chip-group" role="tablist" aria-label="Filtrar por enfoque">
+    <button
+      *ngFor="let focus of focusFilters()"
+      type="button"
+      role="tab"
+      class="chip"
+      [class.chip--active]="selectedFocus() === focus"
+      (click)="updateFocus(focus)"
+    >
+      {{ focus === 'todos' ? 'Todos los temas' : focus }}
+    </button>
+  </div>
+</section>
+
+<section class="videos">
+  <div *ngIf="filteredVideos().length; else empty" class="videos__grid">
+    <app-resource-card
+      *ngFor="let video of filteredVideos()"
+      [title]="video.title"
+      [description]="video.description"
+      [meta]="video.duration"
+      [objective]="video.focus"
+      [tags]="video.tags"
+      variant="video"
+      actionLabel="Ver video"
+      [actionLink]="video.url"
+    >
+      <button
+        type="button"
+        class="videos__mark"
+        (click)="markVideoWatched(video.id, video.title)"
+        actions
+      >
+        Marcar como visto
+      </button>
+    </app-resource-card>
+  </div>
+</section>
+
+<ng-template #empty>
+  <div class="empty">
+    <h3>No hay videos en esta categoría.</h3>
+    <p>Prueba filtrando por otro enfoque o solicita nuevos temas desde tu panel.</p>
+  </div>
+</ng-template>
+
+<section class="playbook">
+  <div class="playbook__card">
+    <h4>Recomendación didáctica</h4>
+    <ol>
+      <li>Activa subtítulos y cambia la velocidad según tu estilo de aprendizaje.</li>
+      <li>Captura dos ideas clave y una acción específica.</li>
+      <li>Comparte tus notas en el aula o en tu círculo familiar.</li>
+    </ol>
+  </div>
+  <div class="playbook__card playbook__card--contrast">
+    <h4>Recursos complementarios</h4>
+    <p>
+      Usa las plantillas de la sección de lecturas para registrar lo aprendido y construir tu plan financiero.
+    </p>
+  </div>
+</section>

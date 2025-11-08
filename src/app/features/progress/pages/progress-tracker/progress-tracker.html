@@ -1,0 +1,97 @@
+<section class="intro">
+  <app-section-heading
+    eyebrow="Tablero personal"
+    title="Tu progreso financiero"
+    description="Haz seguimiento a tus logros en juegos, videos y lecturas. Refuerza hábitos con recordatorios y celebra cada avance."
+  >
+    <button type="button" class="intro__reset" (click)="resetProgress()" actions>
+      Reiniciar progreso
+    </button>
+  </app-section-heading>
+  <p class="intro__helper">
+    Recomendación: registra un resumen breve después de cada actividad. Así consolidarás aprendizaje y mantendrás tu racha activa.
+  </p>
+</section>
+
+<section class="metrics">
+  <app-metric-card
+    value="{{ snapshot().gamesCompleted }}"
+    label="Juegos completados"
+    [helper]="'Simuladores marcados como realizados'"
+    trend="up"
+    trendLabel="Suma juegos para reforzar habilidades"
+  ></app-metric-card>
+  <app-metric-card
+    value="{{ snapshot().videosWatched }}"
+    label="Videos vistos"
+    [helper]="'Reproducciones registradas'"
+  ></app-metric-card>
+  <app-metric-card
+    value="{{ snapshot().readingsFinished }}"
+    label="Lecturas terminadas"
+    [helper]="'Guías y plantillas completadas'"
+  ></app-metric-card>
+  <app-metric-card
+    value="{{ snapshot().streakDays }}"
+    label="Racha activa"
+    [helper]="'Días consecutivos de estudio'"
+  ></app-metric-card>
+</section>
+
+<section class="milestones">
+  <div class="milestones__column">
+    <h3>Logros desbloqueados</h3>
+    <ul *ngIf="achievements().length; else noAchievements">
+      <li *ngFor="let milestone of achievements()">
+        <span class="milestones__status milestones__status--unlocked">✔</span>
+        <div>
+          <p class="milestones__title">{{ milestone.label }}</p>
+          <p class="milestones__description">{{ milestone.description }}</p>
+          <p *ngIf="milestone.unlockedAt" class="milestones__date">
+            {{ milestone.unlockedAt | date: 'mediumDate' }}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="milestones__column">
+    <h3>Próximos objetivos</h3>
+    <ul *ngIf="pendingMilestones().length; else noPending">
+      <li *ngFor="let milestone of pendingMilestones()">
+        <span class="milestones__status">•</span>
+        <div>
+          <p class="milestones__title">{{ milestone.label }}</p>
+          <p class="milestones__description">{{ milestone.description }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<ng-template #noAchievements>
+  <p class="milestones__empty">Aún no desbloqueas logros. ¡Completa tu primer recurso!</p>
+</ng-template>
+
+<ng-template #noPending>
+  <p class="milestones__empty">Has desbloqueado todos los logros disponibles. Nuevos retos llegarán pronto.</p>
+</ng-template>
+
+<section class="activity">
+  <h3>Actividad reciente</h3>
+  <div *ngIf="recentActivity().length; else noActivity" class="activity__list">
+    <article *ngFor="let item of recentActivity()" class="activity__item">
+      <div class="activity__icon">{{ item.resourceType === 'game' ? '🎮' : item.resourceType === 'video' ? '🎬' : '📖' }}</div>
+      <div>
+        <p class="activity__title">{{ item.title }}</p>
+        <p class="activity__meta">{{ item.completedAt | date: 'medium' }}</p>
+      </div>
+      <a [routerLink]="item.resourceType === 'game' ? '/juegos' : item.resourceType === 'video' ? '/videos' : '/lecturas'" class="activity__link">
+        Revisar ruta ↗
+      </a>
+    </article>
+  </div>
+</section>
+
+<ng-template #noActivity>
+  <p class="activity__empty">Aún no registras actividad. Empieza por un juego o video para estrenar tu tablero.</p>
+</ng-template>

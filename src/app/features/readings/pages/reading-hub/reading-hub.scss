@@ -1,0 +1,132 @@
+:host {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.intro {
+  display: grid;
+  gap: 1rem;
+}
+
+.intro__helper {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.68);
+  max-width: 68ch;
+  line-height: 1.65;
+}
+
+.filters {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.chip {
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+}
+
+.chip--active {
+  background: linear-gradient(135deg, #14b8a6, #f97316);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 12px 30px rgba(20, 184, 166, 0.32);
+}
+
+.readings__grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.readings__mark {
+  border: none;
+  background: rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.readings__mark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+}
+
+.empty {
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 1.5rem;
+  border: 1px dashed rgba(15, 23, 42, 0.2);
+  color: rgba(15, 23, 42, 0.64);
+  background: rgba(15, 23, 42, 0.02);
+}
+
+.plan {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.plan__card {
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+}
+
+.plan__card h4 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.plan__card ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  line-height: 1.6;
+  color: rgba(15, 23, 42, 0.68);
+}
+
+.plan__card li {
+  margin-bottom: 0.5rem;
+}
+
+.plan__card--contrast {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(15, 23, 42, 0.92));
+  color: rgba(226, 232, 240, 0.92);
+}
+
+.plan__card--contrast p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .filters {
+    justify-content: center;
+  }
+
+  .chip-group {
+    justify-content: center;
+  }
+}

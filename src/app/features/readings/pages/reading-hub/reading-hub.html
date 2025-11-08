@@ -1,0 +1,74 @@
+<section class="intro">
+  <app-section-heading
+    eyebrow="Lecturas accionables"
+    title="Centro de lectura guiada"
+    description="Cada guía incluye ejercicios, plantillas y preguntas detonadoras para llevar la teoría a tu realidad. Filtra por tema o arma tu plan de estudio semanal."
+  ></app-section-heading>
+  <p class="intro__helper">
+    Usa las etiquetas para identificar los focos que necesitas reforzar. Descarga los recursos y márcalos como terminados para avanzar en tus logros.
+  </p>
+</section>
+
+<section class="filters">
+  <div class="chip-group" role="tablist" aria-label="Filtrar por etiqueta">
+    <button
+      *ngFor="let tag of availableTags()"
+      type="button"
+      role="tab"
+      class="chip"
+      [class.chip--active]="selectedTag() === tag"
+      (click)="updateTag(tag)"
+    >
+      {{ tag === 'todas' ? 'Todas las etiquetas' : tag }}
+    </button>
+  </div>
+</section>
+
+<section class="readings">
+  <div *ngIf="filteredReadings().length; else empty" class="readings__grid">
+    <app-resource-card
+      *ngFor="let reading of filteredReadings()"
+      [title]="reading.title"
+      [description]="reading.summary"
+      [meta]="reading.readingTime"
+      [objective]="reading.focus"
+      [tags]="reading.tags"
+      variant="reading"
+      actionLabel="Descargar"
+      [actionLink]="reading.downloadUrl"
+    >
+      <button
+        type="button"
+        class="readings__mark"
+        (click)="markReadingFinished(reading.id, reading.title)"
+        actions
+      >
+        Marcar como leído
+      </button>
+    </app-resource-card>
+  </div>
+</section>
+
+<ng-template #empty>
+  <div class="empty">
+    <h3>No hay lecturas con esta etiqueta.</h3>
+    <p>Selecciona otra categoría o solicita nuevos materiales desde tu panel.</p>
+  </div>
+</ng-template>
+
+<section class="plan">
+  <div class="plan__card">
+    <h4>Plan semanal sugerido</h4>
+    <ul>
+      <li><strong>Lunes:</strong> Diagnóstico rápido y repaso de objetivos.</li>
+      <li><strong>Miércoles:</strong> Profundiza con la guía seleccionada.</li>
+      <li><strong>Viernes:</strong> Aplica los ejercicios y comparte conclusiones.</li>
+    </ul>
+  </div>
+  <div class="plan__card plan__card--contrast">
+    <h4>Tip de hábitos</h4>
+    <p>
+      Guarda 20 minutos fijos en tu agenda y acompaña cada lectura con un registro en tu tablero de progreso para sostener el hábito.
+    </p>
+  </div>
+</section>

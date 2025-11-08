@@ -1,0 +1,125 @@
+<section class="hero">
+  <div class="hero__content">
+    <p class="hero__eyebrow">Escuela de Educación Financiera Activa</p>
+    <h1 class="hero__title">
+      Aprende, juega y transforma tus decisiones financieras con experiencias guiadas.
+    </h1>
+    <p class="hero__copy">
+      Diseñado para familias, estudiantes y emprendedores que buscan dominar sus finanzas
+      personales a través de retos interactivos, videos claros y lecturas accionables.
+    </p>
+    <div class="hero__actions">
+      <a routerLink="/juegos" class="hero__primary">Explorar juegos</a>
+      <a routerLink="/progreso" class="hero__secondary">Revisar mi progreso</a>
+    </div>
+  </div>
+
+  <div class="hero__panel">
+    <div class="hero__panel-card">
+      <p class="hero__panel-title">Ruta personalizada</p>
+      <ul class="hero__panel-list">
+        <li>Autoevaluación inicial en menos de 2 minutos.</li>
+        <li>Contenido sugerido según tus objetivos.</li>
+        <li>Seguimiento y logros visibles en todo momento.</li>
+      </ul>
+    </div>
+    <div class="hero__panel-card hero__panel-card--accent">
+      <p class="hero__panel-highlight">+30 recursos curados</p>
+      <p class="hero__panel-subtitle">Actualizaciones mensuales con nuevas misiones.</p>
+    </div>
+  </div>
+</section>
+
+<section class="highlights">
+  <article class="highlight" *ngFor="let item of highlights">
+    <span class="highlight__icon">{{ item.icon }}</span>
+    <h3 class="highlight__title">{{ item.title }}</h3>
+    <p class="highlight__description">{{ item.description }}</p>
+  </article>
+</section>
+
+<section class="feature-section" id="juegos">
+  <app-section-heading
+    eyebrow="Practica y experimenta"
+    title="Juegos interactivos"
+    description="Retos que convierten conceptos financieros en decisiones concretas. Cada simulador está diseñado para reforzar hábitos y reflejar escenarios cotidianos."
+  >
+  </app-section-heading>
+
+  <div class="resource-grid">
+    <app-resource-card
+      *ngFor="let game of featuredGames | slice:0:3"
+      [title]="game.title"
+      [description]="game.description"
+      [meta]="game.estimatedTime"
+      [objective]="game.objective"
+      [tags]="game.tags"
+      variant="game"
+      actionLabel="Abrir simulador"
+      [actionLink]="game.link"
+    ></app-resource-card>
+  </div>
+</section>
+
+<section class="feature-section" id="videos">
+  <app-section-heading
+    eyebrow="Aprende visualmente"
+    title="Videoteca curada"
+    description="Videos cortos con explicaciones claras, ideales para repasar conceptos clave y compartir en clase o en familia."
+  >
+    <a routerLink="/videos" class="link-button" actions>Ver todos</a>
+  </app-section-heading>
+
+  <div class="resource-grid">
+    <app-resource-card
+      *ngFor="let video of featuredVideos | slice:0:3"
+      [title]="video.title"
+      [description]="video.description"
+      [meta]="video.duration"
+      [objective]="video.focus"
+      [tags]="video.tags"
+      variant="video"
+      actionLabel="Reproducir"
+      [actionLink]="video.url"
+    ></app-resource-card>
+  </div>
+</section>
+
+<section class="feature-section" id="lecturas">
+  <app-section-heading
+    eyebrow="Profundiza con calma"
+    title="Lecturas guiadas"
+    description="Historias, plantillas y guías descargables para acompañarte en cada decisión financiera importante."
+  >
+    <a routerLink="/lecturas" class="link-button" actions>Explorar lecturas</a>
+  </app-section-heading>
+
+  <div class="resource-grid">
+    <app-resource-card
+      *ngFor="let reading of featuredReadings | slice:0:3"
+      [title]="reading.title"
+      [description]="reading.summary"
+      [meta]="reading.readingTime"
+      [objective]="reading.focus"
+      [tags]="reading.tags"
+      variant="reading"
+      actionLabel="Abrir recurso"
+      [actionLink]="reading.downloadUrl"
+    ></app-resource-card>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="cta-final__content">
+    <h2>
+      Construye tu plan financiero hoy.
+    </h2>
+    <p>
+      Configura tu perfil, desbloquea logros y comparte tu progreso con tu comunidad educativa.
+    </p>
+    <div class="cta-final__actions">
+      <a routerLink="/progreso" class="cta-final__primary">Ir al panel de progreso</a>
+      <a routerLink="/juegos" class="cta-final__secondary">Probar un juego ahora</a>
+    </div>
+  </div>
+</section>

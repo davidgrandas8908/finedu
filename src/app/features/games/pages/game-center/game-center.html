@@ -1,0 +1,74 @@
+<section class="intro">
+  <app-section-heading
+    eyebrow="Laboratorio financiero"
+    title="Juega con escenarios reales"
+    description="Estos simuladores te ayudan a practicar decisiones clave sin poner en riesgo tu dinero. Ajusta variables, analiza resultados y define tus siguientes pasos."
+  ></app-section-heading>
+  <p class="intro__helper">
+    Selecciona una dificultad para encontrar el reto perfecto. Marca cada juego como completado para sumar puntos en tu tablero de progreso.
+  </p>
+</section>
+
+<section class="controls">
+  <div class="chip-group" role="tablist" aria-label="Filtrar por dificultad">
+    <button
+      *ngFor="let level of difficulties"
+      type="button"
+      role="tab"
+      class="chip"
+      [class.chip--active]="selectedDifficulty() === level"
+      (click)="onDifficultyChange(level)"
+    >
+      {{ level === 'todas' ? 'Todas' : level | titlecase }}
+    </button>
+  </div>
+</section>
+
+<section class="games">
+  <div *ngIf="filteredGames().length; else emptyState" class="games__grid">
+    <app-resource-card
+      *ngFor="let game of filteredGames()"
+      [title]="game.title"
+      [description]="game.description"
+      [meta]="game.estimatedTime"
+      [objective]="game.objective"
+      [tags]="game.tags"
+      variant="game"
+      actionLabel="Marcar como completado"
+      (action)="markGameCompleted(game.id, game.title)"
+    >
+      <a
+        *ngIf="game.link && game.link !== '#'"
+        [href]="game.link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="games__secondary-link"
+        actions
+      >
+        Abrir simulador ↗
+      </a>
+    </app-resource-card>
+  </div>
+</section>
+
+<ng-template #emptyState>
+  <div class="empty">
+    <h3>No encontramos juegos para esta dificultad.</h3>
+    <p>Selecciona otra categoría o vuelve pronto para descubrir nuevos retos.</p>
+  </div>
+</ng-template>
+
+<section class="sidebar">
+  <div class="sidebar__card">
+    <h4>Consejo rápido</h4>
+    <p>
+      Antes de jugar, define un objetivo: ¿Reducir gastos, planear un viaje, iniciar un fondo de emergencia? Con un propósito claro aprovechas mejor cada simulación.
+    </p>
+  </div>
+  <div class="sidebar__card sidebar__card--contrast">
+    <h4>Integración con clases</h4>
+    <p>
+      Descarga las hojas de trabajo complementarias y guía a tu grupo paso a paso. Ideal para talleres y sesiones presenciales.
+    </p>
+  </div>
+</section>
